@@ -14,3 +14,5 @@
 
 ## Run project with docker
 `docker-compose up --build`
+
+### Go to http://0.0.0.0:8000/admin and enter `admin` as username, `admin123` as password.
