@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os.path
 from pathlib import Path
 import environ
 
@@ -30,6 +30,7 @@ DEBUG = env.bool('DEBUG', 0)
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
+FIREBASE_CONFIG = os.path.join(BASE_DIR, env.str('FIREBASE_CONFIG'))
 
 # Application definition
 
@@ -44,6 +45,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg2',
 
+    # local apps
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -89,6 +92,13 @@ DATABASES = {
         'HOST': env.str('POSTGRES_HOST'),
         'PORT': env.str('POSTGRES_PORT'),
     }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'users.authentication.FirebaseAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
 }
 
 
