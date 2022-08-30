@@ -30,7 +30,7 @@ DEBUG = env.bool('DEBUG', 0)
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
-FIREBASE_CONFIG = os.path.join(BASE_DIR, env.str('FIREBASE_CONFIG'))
+FIREBASE_CONFIG = os.path.join(BASE_DIR, 'firebase_config.json')
 
 # Application definition
 
@@ -97,7 +97,6 @@ DATABASES = {
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'users.authentication.FirebaseAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
     ),
 }
 
