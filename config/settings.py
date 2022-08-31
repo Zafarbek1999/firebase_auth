@@ -30,7 +30,10 @@ DEBUG = env.bool('DEBUG', 0)
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
+# Firebase
 FIREBASE_CONFIG = os.path.join(BASE_DIR, 'firebase_config.json')
+FIREBASE_TOKEN_URL = f"https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key={env.str('FIREBASE_API_KEY')}"
+FIREBASE_TOKEN_REFRESH_URL = f"https://securetoken.googleapis.com/v1/token?key={env.str('FIREBASE_API_KEY')}"
 
 # Application definition
 

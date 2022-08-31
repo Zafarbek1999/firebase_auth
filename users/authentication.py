@@ -9,7 +9,6 @@ from .firebase_cred import get_credentials
 
 default_app = get_credentials()
 
-
 User = get_user_model()
 
 
@@ -31,5 +30,5 @@ class FirebaseAuthentication(authentication.BaseAuthentication):
         except Exception:
             raise FirebaseError()
         user, created = User.objects.get_or_create(username=uid)
-        user.profile.last_activity = timezone.localtime()
+        user.last_login = timezone.localtime()
         return user, None
